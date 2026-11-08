@@ -8,7 +8,48 @@ class FavoritePage extends StatelessWidget {
   @override 
   Widget build(BuildContext context) { 
     return Scaffold( 
-      appBar: AppBar(title: const Text('Favorit Saya')), 
+      appBar: AppBar(
+        title: const Text('Favorit Saya'),
+        actions: [
+          Consumer<FavoriteProvider>(
+            builder: (context, favorite, child) {
+              return TextButton(
+                onPressed: favorite.count == 0
+                    ? null
+                    : () {
+                        showDialog(
+                          context: context,
+                          builder: (dialogContext) {
+                            return AlertDialog(
+                              title: const Text('Hapus semua favorit?'),
+                              content: const Text(
+                                'Apakah kamu yakin ingin menghapus semua resep favorit?',
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(dialogContext);
+                                  },
+                                  child: const Text('Batal'),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    favorite.clear();
+                                    Navigator.pop(dialogContext);
+                                  },
+                                  child: const Text('Hapus'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                child: const Text('Hapus semua'),
+              );
+            },
+          ),
+        ],
+      ),
       body: Consumer<FavoriteProvider>( 
         builder: (context, favorite, child) { 
           if (favorite.count == 0) { 
