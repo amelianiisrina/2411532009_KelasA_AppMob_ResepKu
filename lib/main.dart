@@ -32,10 +32,12 @@ class ResepKuApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorSchemeSeed: Colors.deepOrange,
+        fontFamily: 'Poppins',
       ),
       darkTheme: ThemeData(
         colorSchemeSeed: Colors.deepOrange,
         brightness: Brightness.dark,
+        fontFamily: 'Poppins',
       ),
       themeMode: context.watch<ThemeProvider>().themeMode,
       builder: (context, child) => IdentityFooter(child: child!),
