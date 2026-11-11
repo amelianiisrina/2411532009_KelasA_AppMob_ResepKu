@@ -35,12 +35,12 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView(
-        children: [
-          for (final recipe in dummyRecipes)
-            RecipeTile(recipe: recipe),
-        ],
-      ),
+      body: ListView.builder (
+        itemCount: dummyRecipes.length,
+        itemBuilder: (context, index) {
+          return RecipeTile(recipe: dummyRecipes[index]);
+        }
+      )
     );
   }
 }
